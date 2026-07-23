@@ -71,6 +71,44 @@ http://localhost:5173
 
 로그인 버튼 선택 시 별도 인증 없이 `/dashboard`로 이동하는 구조
 
+## Vue 화면 렌더링 흐름도
+```mermaid
+flowchart TD
+    A["사용자<br/>https://domain.com/ 접속"] --> B["웹 서버에 GET / 요청"]
+    B --> C["index.html 응답"]
+    C --> D["브라우저가 HTML 파싱"]
+    D --> E["빈 마운트 지점 생성<br/>&lt;div id='app'&gt;&lt;/div&gt;"]
+    D --> F["Vite로 빌드된 JS·CSS 요청"]
+
+    F --> G["main.ts 실행"]
+    G --> H["Pretendard와 전역 스타일 로드"]
+    G --> I["createApp(App)"]
+    I --> J["Pinia 등록"]
+    J --> K["Vue Router 등록"]
+    K --> L["Vue 앱을 #app에 mount"]
+
+    L --> M["App.vue 렌더링"]
+    M --> N["최상위 RouterView 확인"]
+    N --> O{"현재 URL 검사"}
+
+    O -->|"/"| P["/login으로 리다이렉트"]
+    O -->|"/login"| Q["LoginPage 동적 로드"]
+    O -->|"/dashboard"| R["AppLayout 동적 렌더링"]
+
+    P --> Q
+    Q --> S["로그인 화면 DOM 생성"]
+    S --> T["브라우저 화면 출력"]
+
+    R --> U["AppHeader 렌더링"]
+    R --> V["AppSidebar 렌더링"]
+    R --> W["내부 RouterView 확인"]
+    W --> X["DashboardPage 렌더링"]
+    U --> Y["관리자 화면 DOM 생성"]
+    V --> Y
+    X --> Y
+    Y --> Z["브라우저 화면 출력"]
+```
+
 ## 폴더 구조
 
 ```text
@@ -162,3 +200,4 @@ SCSS 반응형 계산 함수 사용 예시
 
 프로젝트의 `.vscode/settings.json`을 이용한 저장 시 Prettier 포맷 적용  
 ESLint 자동 수정은 VS Code의 명시적 저장 액션 기준
+
