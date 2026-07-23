@@ -1,18 +1,16 @@
 # Vue-Prac
 
-Vue 3와 TypeScript 기반의 프론트엔드 SPA 학습 프로젝트  
-팜맵 드론 데이터 서비스 화면설계서를 참고한 관리자 화면 구조 연습  
-백엔드와 실제 인증 없이 화면 구성, 라우팅, 반응형 UI에 집중한 환경
+Vue 3와 TypeScript 기반의 프론트엔드 SPA 학습용
 
 ## 현재 구현 범위
 
-- ID와 비밀번호를 입력하는 모의 로그인 화면
-- 로그인 후 대시보드 이동
+- ID와 비밀번호를 입력하는 모의 로그인 화면 (실제 로그인이 아닌 버튼을 누르면 이동하는 구조)
+- 로그인 버튼 누르면 대시보드 이동
 - 헤더, 레프트 메뉴, 콘텐츠로 구성된 공통 레이아웃
 - Vue Router 중첩 라우트를 이용한 콘텐츠 교체
 - 1024px 미만의 햄버거 메뉴와 모바일 사이드바
 - CSS 변수 기반 디자인 토큰
-- SCSS 기반 `toClamp()` 반응형 크기 계산 함수
+- SCSS 기반 `toClamp()` 반응형 크기 계산 함수 (구현만 해두고 미사용 상태)
 
 ## 기술 구성
 
@@ -24,7 +22,7 @@ Vue 3와 TypeScript 기반의 프론트엔드 SPA 학습 프로젝트
 | 라우팅     | Vue Router                |
 | 상태 관리  | Pinia                     |
 | 스타일     | CSS, Scoped CSS, SCSS     |
-| 폰트       | Pretendard Variable       |
+| 폰트       | Pretendard                |
 | 코드 품질  | ESLint, Prettier, vue-tsc |
 
 Pinia는 애플리케이션에 등록된 상태이며 실제 Store는 아직 미구현 상태
