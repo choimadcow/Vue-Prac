@@ -4,6 +4,8 @@ Vue 3와 TypeScript 기반의 프론트엔드 SPA 학습용
 
 ## 현재 구현 범위
 
+- 디자인시스템: https://www.figma.com/design/5KElodBZrQ5WPDYQuNsfCj/%EC%A0%9C%EB%AA%A9-%EC%97%86%EC%9D%8C?node-id=0-1&t=g1svxdfZJdmCUVIE-1
+
 - ID와 비밀번호를 입력하는 모의 로그인 화면 (실제 로그인이 아닌 버튼을 누르면 이동하는 구조)
 - 로그인 버튼 누르면 대시보드 이동
 - 헤더, 레프트 메뉴, 콘텐츠로 구성된 공통 레이아웃
