@@ -15,9 +15,9 @@ const handleLogin = () => {
 <template>
   <main class="login-page">
     <section class="login-panel" aria-labelledby="login-title">
-      <div class="login-brand">
-        <div class="login-brand__mark" aria-hidden="true">Vue</div>
-        <h1 id="login-title" class="login-brand__title">Vue 테스트</h1>
+      <div class="login-logo">
+        <div class="login-logo__mark" aria-hidden="true">Vue</div>
+        <h1 id="login-title" class="login-logo__title">Vue 테스트</h1>
       </div>
 
       <form class="login-form" @submit.prevent="handleLogin">
@@ -69,7 +69,7 @@ const handleLogin = () => {
   background: var(--color-surface);
 }
 
-.login-brand {
+.login-logo {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -81,7 +81,7 @@ const handleLogin = () => {
   text-align: center;
 }
 
-.login-brand__mark {
+.login-logo__mark {
   display: grid;
   width: 64px;
   height: 64px;
@@ -93,7 +93,7 @@ const handleLogin = () => {
   place-items: center;
 }
 
-.login-brand__title {
+.login-logo__title {
   font-size: var(--font-size-h2);
   line-height: var(--line-height-h2);
 }
@@ -155,7 +155,7 @@ const handleLogin = () => {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .login-brand {
+  .login-logo {
     min-height: auto;
     padding: var(--space-8) var(--space-6);
     border-right: 0;
