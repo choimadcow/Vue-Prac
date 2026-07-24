@@ -22,10 +22,38 @@ const router = createRouter({
           name: 'dashboard',
           component: () => import('@/pages/DashboardPage.vue'),
         },
+      ],
+    },
+    {
+      path: '/usermng',
+      component: AppLayout,
+      children: [
         {
-          path: 'map',
+          path: '',
+          name: 'mng',
+          component: () => import('@/pages/UserManagePage.vue'),
+        },
+      ],
+    },
+    {
+      path: '/map',
+      component: AppLayout,
+      children: [
+        {
+          path: '',
           name: 'map',
           component: () => import('@/pages/MapPage.vue'),
+        },
+      ],
+    },
+    {
+      path: '/pest',
+      component: AppLayout,
+      children: [
+        {
+          path: '',
+          name: 'pest',
+          component: () => import('@/pages/PestListPage.vue'),
         },
       ],
     },

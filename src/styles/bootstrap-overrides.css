@@ -1,0 +1,56 @@
+:root {
+  --bs-body-font-family: var(--font-family-base);
+  --bs-body-font-size: var(--font-size-body);
+  --bs-body-color: var(--color-text);
+  --bs-body-bg: var(--color-background);
+  --bs-border-color: var(--color-border);
+  --bs-border-radius: var(--radius-control);
+}
+
+.btn {
+  --bs-btn-border-radius: var(--radius-control);
+  --bs-btn-font-size: var(--font-size-body);
+  --bs-btn-font-weight: var(--font-weight-semibold);
+}
+
+.btn-primary {
+  --bs-btn-color: var(--color-text-inverse);
+  --bs-btn-bg: var(--color-primary);
+  --bs-btn-border-color: var(--color-primary);
+  --bs-btn-hover-color: var(--color-text-inverse);
+  --bs-btn-hover-bg: var(--color-primary-strong);
+  --bs-btn-hover-border-color: var(--color-primary-strong);
+  --bs-btn-focus-shadow-rgb: 47, 125, 79;
+  --bs-btn-active-color: var(--color-text-inverse);
+  --bs-btn-active-bg: var(--color-primary-strong);
+  --bs-btn-active-border-color: var(--color-primary-strong);
+  --bs-btn-disabled-color: var(--color-text-inverse);
+  --bs-btn-disabled-bg: var(--color-primary);
+  --bs-btn-disabled-border-color: var(--color-primary);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--color-primary);
+  --bs-btn-border-color: var(--color-primary);
+  --bs-btn-hover-color: var(--color-text-inverse);
+  --bs-btn-hover-bg: var(--color-primary);
+  --bs-btn-hover-border-color: var(--color-primary);
+  --bs-btn-focus-shadow-rgb: 47, 125, 79;
+  --bs-btn-active-color: var(--color-text-inverse);
+  --bs-btn-active-bg: var(--color-primary-strong);
+  --bs-btn-active-border-color: var(--color-primary-strong);
+}
+
+.form-control,
+.form-select {
+  min-height: 44px;
+  border-color: var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-body);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}

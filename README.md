@@ -12,20 +12,20 @@ Vue 3와 TypeScript 기반의 프론트엔드 SPA 학습용
 - Vue Router 중첩 라우트를 이용한 콘텐츠 교체
 - 1024px 미만의 햄버거 메뉴와 모바일 사이드바
 - CSS 변수 기반 디자인 토큰
-- SCSS 기반 `toClamp()` 반응형 크기 계산 함수 (구현만 해두고 미사용 상태)
+- Bootstrap 기반 공통 폼·버튼·내비게이션 스타일
 
 ## 기술 구성
 
-| 구분       | 기술                      |
-| ---------- | ------------------------- |
-| 프레임워크 | Vue 3                     |
-| 언어       | TypeScript                |
-| 빌드 도구  | Vite                      |
-| 라우팅     | Vue Router                |
-| 상태 관리  | Pinia                     |
-| 스타일     | CSS, Scoped CSS, SCSS     |
-| 폰트       | Pretendard                |
-| 코드 품질  | ESLint, Prettier, vue-tsc |
+| 구분       | 기술                         |
+| ---------- | ---------------------------- |
+| 프레임워크 | Vue 3                        |
+| 언어       | TypeScript                   |
+| 빌드 도구  | Vite                         |
+| 라우팅     | Vue Router                   |
+| 상태 관리  | Pinia                        |
+| 스타일     | CSS, Scoped CSS, Bootstrap 5 |
+| 폰트       | Pretendard                   |
+| 코드 품질  | ESLint, Prettier, vue-tsc    |
 
 Pinia는 애플리케이션에 등록된 상태이며 실제 Store는 아직 미구현 상태
 
@@ -62,12 +62,14 @@ http://localhost:5173
 
 ## 라우트
 
-| 경로             | 화면                |
-| ---------------- | ------------------- |
-| `/`              | `/login` 리다이렉트 |
-| `/login`         | 모의 로그인         |
-| `/dashboard`     | 대시보드            |
-| `/dashboard/map` | 지도 테스트         |
+| 경로         | 화면                |
+| ------------ | ------------------- |
+| `/`          | `/login` 리다이렉트 |
+| `/login`     | 모의 로그인         |
+| `/dashboard` | 대시보드            |
+| `/usermng`   | 유저 관리           |
+| `/map`       | 지도 테스트         |
+| `/pest`      | 병해충 목록         |
 
 로그인 버튼 선택 시 별도 인증 없이 `/dashboard`로 이동하는 구조
 
@@ -84,28 +86,29 @@ src/
 ├── pages/
 │   ├── LoginPage.vue
 │   ├── DashboardPage.vue
-│   └── MapPage.vue
+│   ├── MapPage.vue
+│   ├── PestListPage.vue
+│   └── UserManagePage.vue
 ├── router/
 │   └── index.ts
 ├── styles/
-│   ├── tools/
-│   │   └── _fluid.scss
-│   ├── index.scss
+│   ├── index.css
 │   ├── tokens.css
-│   ├── reset.css
-│   └── base.css
+│   ├── base.css
+│   └── bootstrap-overrides.css
 ├── App.vue
 └── main.ts
 ```
 
-| 경로                       | 역할                                            |
-| -------------------------- | ----------------------------------------------- |
-| `components/`              | 여러 화면에서 재사용하는 UI 컴포넌트            |
-| `layouts/`                 | 헤더와 사이드바를 포함한 공통 화면 틀           |
-| `pages/`                   | 라우트 단위 화면 컴포넌트                       |
-| `router/`                  | URL과 화면 연결 설정                            |
-| `styles/tokens.css`        | 색상, 글자 크기, 간격, 반경 디자인 토큰         |
-| `styles/tools/_fluid.scss` | 최소·최대 크기를 `clamp()`로 변환하는 SCSS 함수 |
+| 경로                             | 역할                                  |
+| -------------------------------- | ------------------------------------- |
+| `components/`                    | 여러 화면에서 재사용하는 UI 컴포넌트  |
+| `layouts/`                       | 헤더와 사이드바를 포함한 공통 화면 틀 |
+| `pages/`                         | 라우트 단위 화면 컴포넌트             |
+| `router/`                        | URL과 화면 연결 설정                  |
+| `styles/tokens.css`              | 디자인 토큰                           |
+| `styles/base.css`                | 프로젝트 전역 기본 스타일             |
+| `styles/bootstrap-overrides.css` | Bootstrap과 디자인 토큰 연결          |
 
 ## 화면 구조
 
@@ -118,7 +121,9 @@ App.vue
         ├── AppSidebar
         └── RouterView
             ├── DashboardPage
-            └── MapPage
+            ├── UserManagePage
+            ├── MapPage
+            └── PestListPage
 ```
 
 로그인 화면과 관리자 공통 레이아웃을 서로 분리한 구성  
@@ -136,22 +141,15 @@ App.vue
 
 ## 스타일 관리
 
-전역 스타일 진입점인 `src/styles/index.scss`에서 토큰, Reset, 기본 스타일 로드  
-공통 색상과 간격은 `tokens.css`의 CSS 변수로 관리  
+전역 스타일 진입점인 `src/styles/index.css`에서 토큰, 기본 스타일, Bootstrap 재정의 로드
+
+공통 색상과 간격은 `tokens.css`의 CSS 변수로 관리
+
+Bootstrap 기본 CSS는 `main.ts`에서 먼저 로드
+
+프로젝트 디자인은 `bootstrap-overrides.css`에서 토큰 기반으로 재정의
+
 화면 전용 스타일은 각 Vue 파일의 `<style scoped>`에서 관리
-
-SCSS 반응형 계산 함수 사용 예시
-
-```scss
-@use '@/styles/tools/fluid' as fluid;
-
-.page-title {
-  font-size: fluid.toClamp(20px, 32px);
-}
-```
-
-기본 계산 범위는 360px부터 1440px까지의 viewport  
-현재 화면 코드에는 아직 미적용 상태
 
 ## VS Code 권장 환경
 

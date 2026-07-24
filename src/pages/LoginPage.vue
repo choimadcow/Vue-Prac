@@ -20,30 +20,32 @@ const handleLogin = () => {
         <h1 id="login-title" class="login-logo__title">Vue 테스트</h1>
       </div>
 
-      <form class="login-form" @submit.prevent="handleLogin">
-        <div class="login-form__field">
-          <label for="user-id">아이디</label>
+      <form class="login-form d-flex flex-column gap-3" @submit.prevent="handleLogin">
+        <div>
+          <label class="form-label" for="user-id">아이디</label>
           <input
             id="user-id"
             v-model.trim="userId"
+            class="form-control"
             type="text"
             autocomplete="username"
             placeholder="아이디를 입력하세요"
           />
         </div>
 
-        <div class="login-form__field">
-          <label for="password">비밀번호</label>
+        <div>
+          <label class="form-label" for="password">비밀번호</label>
           <input
             id="password"
             v-model="password"
+            class="form-control"
             type="password"
             autocomplete="current-password"
             placeholder="비밀번호를 입력하세요"
           />
         </div>
 
-        <button class="login-form__submit" type="submit">로그인</button>
+        <button class="btn btn-primary w-100" type="submit">로그인</button>
         <p>로그인 버튼 누르면 화면 이동</p>
       </form>
     </section>
@@ -99,51 +101,8 @@ const handleLogin = () => {
 }
 
 .login-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-form-field);
   justify-content: center;
   padding: var(--space-10);
-}
-
-.login-form__field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-field-label);
-}
-
-.login-form__field label {
-  color: var(--color-text-strong);
-  font-size: var(--font-size-label);
-  font-weight: var(--font-weight-semibold);
-}
-
-.login-form__field input {
-  width: 100%;
-  height: 44px;
-  padding: 0 var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  background: var(--color-surface);
-  outline: none;
-}
-
-.login-form__field input:focus {
-  border-color: var(--color-primary);
-}
-
-.login-form__submit {
-  height: 44px;
-  margin-top: var(--space-2);
-  border: 0;
-  border-radius: var(--radius-control);
-  color: var(--color-text-inverse);
-  background: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
-}
-
-.login-form__submit:hover {
-  background: var(--color-primary-strong);
 }
 
 @media (width < 640px) {
